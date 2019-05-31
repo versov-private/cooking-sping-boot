@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "favourites",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "dish_id"})})
-public class Favourite {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Favourite {
     @JoinColumn(name = "dish_id", nullable = false)
     private Dish dish;
 
-    public Favourite() {
+    public Favorite() {
     }
 
     public Long getId() {
@@ -49,7 +49,7 @@ public class Favourite {
 
     @Override
     public String toString() {
-        return "Favourite{" +
+        return "Favorite{" +
                 "id=" + id +
                 ", user=" + user +
                 ", dish=" + dish +
@@ -60,10 +60,10 @@ public class Favourite {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Favourite favourite = (Favourite) o;
-        return getId().equals(favourite.getId()) &&
-                Objects.equals(getUser(), favourite.getUser()) &&
-                Objects.equals(getDish(), favourite.getDish());
+        Favorite favorite = (Favorite) o;
+        return getId().equals(favorite.getId()) &&
+                Objects.equals(getUser(), favorite.getUser()) &&
+                Objects.equals(getDish(), favorite.getDish());
     }
 
     @Override

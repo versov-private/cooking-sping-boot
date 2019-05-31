@@ -49,6 +49,11 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "storage_id")
+    private Storage storage;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -56,13 +61,8 @@ public class User implements Serializable {
     private Set<Role> roles;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "storage_id")
-    private Storage storage;
-
-    @JsonIgnore
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Favourite> favourites;
+    private Set<Favorite> favorites;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -164,12 +164,12 @@ public class User implements Serializable {
         this.storage = storage;
     }
 
-    public Set<Favourite> getFavourites() {
-        return favourites;
+    public Set<Favorite> getFavorites() {
+        return favorites;
     }
 
-    public void setFavourites(Set<Favourite> favourites) {
-        this.favourites = favourites;
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public Set<Like> getLike() {

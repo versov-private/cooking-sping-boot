@@ -52,7 +52,7 @@ public class Dish implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "dish",cascade = CascadeType.ALL)
-    private Set<Favourite>favourites;
+    private Set<Favorite> favorites;
 
     @JsonIgnore
     @OneToMany(mappedBy = "dish",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -141,12 +141,12 @@ public class Dish implements Serializable {
         this.ingredients = ingredients;
     }
 
-    public Set<Favourite> getFavourites() {
-        return favourites;
+    public Set<Favorite> getFavorites() {
+        return favorites;
     }
 
-    public void setFavourites(Set<Favourite> favourites) {
-        this.favourites = favourites;
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     public Set<Like> getLike() {

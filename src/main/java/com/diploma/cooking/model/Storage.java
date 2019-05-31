@@ -22,7 +22,7 @@ public class Storage {
 
     @JsonIgnore
     @OneToMany(mappedBy = "storage", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<User> user;
+    private Set<User> users;
 
     public Storage() {
     }
@@ -51,12 +51,12 @@ public class Storage {
         this.storageProducts = storageProducts;
     }
 
-    public Set<User> getUser() {
-        return user;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
+    public void setUsers(Set<User> user) {
+        this.users = user;
     }
 
     @Override
