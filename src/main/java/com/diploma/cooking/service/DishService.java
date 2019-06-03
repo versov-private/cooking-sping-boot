@@ -1,35 +1,21 @@
 package com.diploma.cooking.service;
 
-import com.diploma.cooking.model.Dish;
-import com.diploma.cooking.repository.DishRepository;
-import org.springframework.stereotype.Service;
+import com.diploma.cooking.model.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class DishService {
+public interface DishService {
 
-    private final DishRepository dishRepository;
-
-    public DishService(DishRepository dishRepository) {
-        this.dishRepository = dishRepository;
-    }
-
-    public List<Dish> findAll() {
-        return dishRepository.findAll();
-    }
-
-    public Optional<Dish> findById(Long id) {
-        return dishRepository.findById(id);
-    }
-
-    public void saveOrUpdate(Dish dish) {
-        dishRepository.save(dish);
-    }
-
-    public void delete(Dish dish) {
-        dishRepository.delete(dish);
-    }
-
+    List<Dish> findAll();
+    Optional<Dish> findById(Long id);
+    Dish saveOrUpdate(Dish dish);
+    void delete(Dish dish);
+    List<Dish> findDishesByProduct(Product product);
+    List<Dish> findFavouriteDishesByUser(User user);
+    List<Dish> findByStorage(Storage storage);
+    List<Dish> findByUser(User user);
+    List<Dish> findByTimeOfCooking(float timeOfCooking);
+    List<Dish> findByLikeUser(User user);
+    Dish findByComment(Comment comment);
 }

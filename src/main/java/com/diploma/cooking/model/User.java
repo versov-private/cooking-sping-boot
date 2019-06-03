@@ -46,7 +46,6 @@ public class User implements Serializable {
     private String username;
 
     @Column(nullable = false)
-    @JsonIgnore
     private String password;
 
     @JsonIgnore
@@ -54,7 +53,7 @@ public class User implements Serializable {
     @JoinColumn(name = "storage_id")
     private Storage storage;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

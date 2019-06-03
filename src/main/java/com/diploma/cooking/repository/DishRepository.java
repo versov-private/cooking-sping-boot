@@ -9,7 +9,7 @@ import java.util.List;
 public interface DishRepository extends JpaRepository<Dish, Long> {
 
     @Query("SELECT i.dish FROM Ingredient i WHERE i.product = ?1")
-    List<Dish> findDishByProduct(Product product);
+    List<Dish> findDishesByProduct(Product product);
 
     @Query("SELECT f.dish FROM Favorite f WHERE f.user = ?1")
     List<Dish> findFavouriteDishesByUser(User user);

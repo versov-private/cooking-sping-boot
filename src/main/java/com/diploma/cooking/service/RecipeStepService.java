@@ -1,0 +1,14 @@
+package com.diploma.cooking.service;
+
+import com.diploma.cooking.model.RecipeStep;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface RecipeStepService {
+
+    List<RecipeStep> findAll();
+    Optional<RecipeStep> findById(Long id);
+    RecipeStep saveOrUpdate(RecipeStep recipeStep);
+    void delete(RecipeStep recipeStep);
+}
