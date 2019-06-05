@@ -4,6 +4,7 @@ import com.diploma.cooking.model.Storage;
 import com.diploma.cooking.service.StorageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class StorageController {
     }
 
     @GetMapping("/storages")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Storage>> findAll() {
         List<Storage> storages = storageService.findAll();
         return storages.isEmpty()
@@ -26,6 +28,7 @@ public class StorageController {
     }
 
     @GetMapping("/storages/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Storage> findById(@PathVariable Long id) {
         return storageService.findById(id)
                 .map(storage -> new ResponseEntity<>(storage, HttpStatus.OK))
@@ -33,6 +36,7 @@ public class StorageController {
     }
 
     @PostMapping("/storages")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Storage> save(@RequestBody Storage storage) {
         return storage.getId().intValue() == 0
                 ? new ResponseEntity<>(storageService.saveOrUpdate(storage), HttpStatus.CREATED)
@@ -40,6 +44,7 @@ public class StorageController {
     }
 
     @PutMapping("/storages")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Storage> update(@RequestBody Storage storage) {
         return storage.getId().intValue() > 0
                 ? new ResponseEntity<>(storageService.saveOrUpdate(storage), HttpStatus.OK)
@@ -47,6 +52,7 @@ public class StorageController {
     }
 
     @DeleteMapping("/storages/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Storage> delete(@PathVariable Long id) {
         return storageService.findById(id)
                 .map(storage -> {

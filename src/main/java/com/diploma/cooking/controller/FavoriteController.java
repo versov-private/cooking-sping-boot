@@ -4,6 +4,7 @@ import com.diploma.cooking.model.Favorite;
 import com.diploma.cooking.service.FavoriteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class FavoriteController {
     }
 
     @GetMapping("/favorites")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Favorite>> findAll() {
         List<Favorite> favorites = favoriteService.findAll();
         if(favorites.isEmpty()){
@@ -27,6 +29,7 @@ public class FavoriteController {
     }
 
     @GetMapping("/favorites/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Favorite> findById(@PathVariable Long id) {
         return favoriteService.findById(id)
                 .map(favorite -> new ResponseEntity<>(favorite, HttpStatus.OK))
@@ -34,6 +37,7 @@ public class FavoriteController {
     }
 
     @PostMapping("/favorites")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Favorite> save(@RequestBody Favorite favorite) {
         if(favorite.getId().intValue() == 0){
             return new ResponseEntity<>(favoriteService.saveOrUpdate(favorite), HttpStatus.CREATED);
@@ -42,6 +46,7 @@ public class FavoriteController {
     }
 
     @PutMapping("/favorites")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Favorite> update(@RequestBody Favorite favorite) {
         if(favorite.getId().intValue() > 0){
             return new ResponseEntity<>(favoriteService.saveOrUpdate(favorite), HttpStatus.CREATED);
@@ -50,6 +55,7 @@ public class FavoriteController {
     }
 
     @DeleteMapping("/favorites/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Favorite> delete(@PathVariable Long id) {
         return favoriteService.findById(id)
                 .map(favorite -> {

@@ -4,6 +4,7 @@ import com.diploma.cooking.model.RecipeStep;
 import com.diploma.cooking.service.RecipeStepService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class RecipeStepController {
     }
 
     @GetMapping("/recipe-steps")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<RecipeStep>> findAll() {
         List<RecipeStep> recipeSteps = recipeStepService.findAll();
         return recipeSteps.isEmpty()
@@ -26,6 +28,7 @@ public class RecipeStepController {
     }
 
     @GetMapping("/recipe-steps/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<RecipeStep> findById(@PathVariable Long id) {
         return recipeStepService.findById(id)
                 .map(recipeStep -> new ResponseEntity<>(recipeStep, HttpStatus.OK))
@@ -33,6 +36,7 @@ public class RecipeStepController {
     }
 
     @PostMapping("/recipe-steps")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<RecipeStep> save(@RequestBody RecipeStep recipeStep) {
         return recipeStep.getId().intValue() == 0
                 ? new ResponseEntity<>(recipeStepService.saveOrUpdate(recipeStep), HttpStatus.CREATED)
@@ -40,6 +44,7 @@ public class RecipeStepController {
     }
 
     @PutMapping("/recipe-steps")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<RecipeStep> update(@RequestBody RecipeStep recipeStep) {
         return recipeStep.getId().intValue() > 0
                 ? new ResponseEntity<>(recipeStepService.saveOrUpdate(recipeStep), HttpStatus.OK)
@@ -47,6 +52,7 @@ public class RecipeStepController {
     }
 
     @DeleteMapping("/recipe-steps/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<RecipeStep> delete(@PathVariable Long id) {
         return recipeStepService.findById(id)
                 .map(recipeStep -> {

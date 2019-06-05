@@ -4,6 +4,7 @@ import com.diploma.cooking.model.Role;
 import com.diploma.cooking.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class RoleController {
     }
 
     @GetMapping("/roles")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Role>> findAll() {
         List<Role> roles = roleService.findAll();
         return roles.isEmpty()
@@ -26,6 +28,7 @@ public class RoleController {
     }
 
     @GetMapping("/roles/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role> findById(@PathVariable Long id) {
         return roleService.findById(id)
                 .map(role -> new ResponseEntity<>(role, HttpStatus.OK))
@@ -33,6 +36,7 @@ public class RoleController {
     }
 
     @PostMapping("/roles")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role> save(@RequestBody Role role) {
         return role.getId().intValue() == 0
                 ? new ResponseEntity<>(roleService.saveOrUpdate(role), HttpStatus.CREATED)
@@ -40,6 +44,7 @@ public class RoleController {
     }
 
     @PutMapping("/roles")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role> update(@RequestBody Role role) {
         return role.getId().intValue() > 0
                 ? new ResponseEntity<>(roleService.saveOrUpdate(role), HttpStatus.OK)
@@ -47,6 +52,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/roles/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role> delete(@PathVariable Long id) {
         return roleService.findById(id)
                 .map(role -> {

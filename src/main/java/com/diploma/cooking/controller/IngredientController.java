@@ -4,6 +4,7 @@ import com.diploma.cooking.model.Ingredient;
 import com.diploma.cooking.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class IngredientController {
     }
 
     @GetMapping("/ingredients")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Ingredient>> findAll() {
         List<Ingredient> ingredients = ingredientRepository.findAll();
         return ingredients.isEmpty()
@@ -26,6 +28,7 @@ public class IngredientController {
     }
 
     @GetMapping("/ingredients/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Ingredient> findById(@PathVariable Long id){
         return ingredientRepository.findById(id)
                 .map(ingredient -> new ResponseEntity<>(ingredient, HttpStatus.OK))
@@ -33,6 +36,7 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredients")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Ingredient> save(@RequestBody Ingredient ingredient) {
         if(ingredient.getId().intValue() == 0){
             return new ResponseEntity<>(ingredientRepository.save(ingredient), HttpStatus.CREATED);
@@ -41,6 +45,7 @@ public class IngredientController {
     }
 
     @PutMapping("/ingredients")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Ingredient> update(@RequestBody Ingredient ingredient) {
         if(ingredient.getId().intValue() > 0){
             return new ResponseEntity<>(ingredientRepository.save(ingredient), HttpStatus.OK);
@@ -49,6 +54,7 @@ public class IngredientController {
     }
 
     @DeleteMapping("/ingredients/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Ingredient> delete(@PathVariable Long id) {
         return ingredientRepository.findById(id)
                 .map(ingredient -> {

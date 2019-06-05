@@ -4,6 +4,7 @@ import com.diploma.cooking.model.Like;
 import com.diploma.cooking.service.LikeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class LikeController {
     }
 
     @GetMapping("/likes")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Like>> findAll() {
         List<Like> likes = likeService.findAll();
         return likes.isEmpty()
@@ -26,6 +28,7 @@ public class LikeController {
     }
 
     @GetMapping("/likes/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Like> findById(@PathVariable Long id) {
         return likeService.findById(id)
                 .map(like -> new ResponseEntity<>(like, HttpStatus.OK))
@@ -33,6 +36,7 @@ public class LikeController {
     }
 
     @PostMapping("/likes")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Like> save(@RequestBody Like like) {
         return like.getId().intValue() == 0
                 ? new ResponseEntity<>(likeService.saveOrUpdate(like), HttpStatus.CREATED)
@@ -40,6 +44,7 @@ public class LikeController {
     }
 
     @PutMapping("/likes")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Like> update(@RequestBody Like like) {
         return like.getId().intValue() > 0
                 ? new ResponseEntity<>(likeService.saveOrUpdate(like), HttpStatus.OK)
@@ -47,6 +52,7 @@ public class LikeController {
     }
 
     @DeleteMapping("/likes/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Like> delete(@PathVariable Long id) {
         return likeService.findById(id)
                 .map(like -> {
