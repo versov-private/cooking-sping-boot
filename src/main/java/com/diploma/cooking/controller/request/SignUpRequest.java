@@ -38,15 +38,17 @@ public class SignUpRequest {
     @Size(min = 6, max = 40)
     private String password;
 
-    private UserSex sex;
+    private String sex;
 
     public SignUpRequest() {
     }
 
     public User toEntity(PasswordEncoder encoder, RoleService roleService) {
+        User user = new User();
+
         Set<Role> roles = new HashSet<>();
         getRoles().forEach(role -> {
-            switch (role) {
+            switch (role.toLowerCase()) {
                 case "admin":
                     Role adminRole = roleService.findByName(RoleName.ROLE_ADMIN)
                             .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
@@ -62,15 +64,35 @@ public class SignUpRequest {
             }
         });
 
-        User user = new User();
+        switch (getSex().toLowerCase()) {
+            case "male":
+                user.setSex(UserSex.MALE);
+                break;
+            case "female":
+                user.setSex(UserSex.FEMALE);
+                break;
+        }
+
         user.setFirstName(getFirstName());
         user.setLastName(getLastName());
         user.setUsername(getUsername());
         user.setEmail(getEmail());
-        user.setSex(getSex());
         user.setRoles(roles);
         user.setPassword(encoder.encode(getPassword()));
         return user;
+    }
+
+    @Override
+    public String toString() {
+        return "SignUpRequest{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                '}';
     }
 
     public String getFirstName() {
@@ -121,11 +143,11 @@ public class SignUpRequest {
         this.password = password;
     }
 
-    public UserSex getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(UserSex sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 }

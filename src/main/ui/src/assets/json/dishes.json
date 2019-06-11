@@ -1,0 +1,126 @@
+[{"id": 1, "name": "Котлеты «Мон Шер»", "type": "Жаркое", "description": "Я люблю хорошие рецепты, читаю книги и нахожу что-то новое для себя.","dateOfCreate": "2019-02-17","image": "/assets/images/dish-1.jpg", "author": {"id": 1, "firstName": "Clinton", "lastName": "Tsang", "email": "ctsang@gmail.com", "dateOfBirth": "1967-12-13", "sex": "Мужской", "avatar": "/assets/images/client-1.jpg"}},
+  {
+    "id": 2,
+    "name": "Торт с клубникой и белым шоколадом",
+    "type": "Десерт",
+    "description": "Представляю вам тарт, насыщенный ароматами клубники, с нежным",
+    "timeOfCooking": 120,
+    "dateOfCreate": "2019-02-17",
+    "image": "/assets/images/dish-2.jpg",
+    "author": {
+      "id": 3,
+      "firstName": "Albert",
+      "lastName": "Vandershtain",
+      "email": "vandershtain@gmail.com",
+      "dateOfBirth": "1989-07-05",
+      "sex": "Мужской",
+      "avatar": "/assets/images/client-3.jpg"
+    }
+  },
+  { "id": 3,
+    "name": "Овсяные батончики с малиновым джемом и орехами",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 120,
+    "dateOfCreate": "2019-02-17",
+    "image": "/assets/images/dish-3.jpg",
+    "author": {
+      "id": 2,
+      "firstName": "Fiona",
+      "lastName": "Verdejo",
+      "email": "fverdejo@gmail.com",
+      "dateOfBirth": "1992-06-22",
+      "sex": "Женский",
+      "avatar": "/assets/images/client-2.jpg"
+    }
+  },
+  { "id": 4,
+    "name": "Американские блины",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 200,
+    "dateOfCreate": "2019-02-17",
+    "image": "/assets/images/dish-4.jpg",
+    "author": {
+      "id": 4,
+      "firstName": "Jasmine",
+      "lastName": "Tompson",
+      "email": "tompson@gmail.com",
+      "dateOfBirth": "2006-07-05",
+      "sex": "Женский",
+      "avatar": "/assets/images/client-4.jpg"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Блины на кефире",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 150,
+    "dateOfCreate": "2019-02-20",
+    "image": "/assets/images/dish-5.jpg",
+    "author": {
+      "id": 1,
+      "firstName": "Clinton",
+      "lastName": "Tsang",
+      "email": "ctsang@gmail.com",
+      "dateOfBirth": "1967-12-13",
+      "sex": "Мужской",
+      "avatar": "/assets/images/client-1.jpg"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Блинные мешочки",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 60,
+    "dateOfCreate": "2019-02-20",
+    "image": "/assets/images/dish-6.jpg",
+    "author": {
+      "id": 1,
+      "firstName": "Clinton",
+      "lastName": "Tsang",
+      "email": "ctsang@gmail.com",
+      "dateOfBirth": "1967-12-13",
+      "sex": "Мужской",
+      "avatar": "/assets/images/client-1.jpg"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Гуляш с фасолью",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 150,
+    "dateOfCreate": "2019-02-20",
+    "image": "/assets/images/dish-7.jpg",
+    "author": {
+      "id": 4,
+      "firstName": "Jasmine",
+      "lastName": "Tompson",
+      "email": "tompson@gmail.com",
+      "dateOfBirth": "2006-07-05",
+      "sex": "Женский",
+      "avatar": "/assets/images/client-4.jpg"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Ягодная «Павлова»",
+    "type": "Десерт",
+    "description": "Такие батончики — прекрасный полезный перекус",
+    "timeOfCooking": 150,
+    "dateOfCreate": "2019-02-20",
+    "image": "/assets/images/dish-8.jpg",
+    "author": {
+      "id": 3,
+      "firstName": "Albert",
+      "lastName": "Vandershtain",
+      "email": "vandershtain@gmail.com",
+      "dateOfBirth": "1989-07-05",
+      "sex": "Мужской",
+      "avatar": "/assets/images/client-3.jpg"
+    }
+  }
+]

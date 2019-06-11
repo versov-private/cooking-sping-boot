@@ -21,13 +21,13 @@ public class DishController {
         this.dishService = dishService;
     }
 
-    @GetMapping("/api/dishes")
+    @GetMapping("/shared/dishes")
     public ResponseEntity<List<Dish>> findAll(){
         final List<Dish> dishes = dishService.findAll();
         return new ResponseEntity<>(dishes, HttpStatus.OK);
     }
 
-    @GetMapping("/api/dishes/{id}")
+    @GetMapping("/shared/dishes/{id}")
     public ResponseEntity<Dish> findById(@PathVariable Long id){
         return dishService.findById(id)
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))

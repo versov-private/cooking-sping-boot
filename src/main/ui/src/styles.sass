@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css'
+
+.cursor
+  cursor: pointer
+
+.text-grey
+  color: #9E9E9E
+
+img
+  width: 100%
+
+a:hover
+  text-decoration: none!important
+
+.m-2
+  height: 90%
+
+.m-2
+  img
+    height: 25vh
+
+@media screen and (max-width: 992px)
+  .m-2
+    img
+      height: 75vh
+
+@media screen and (max-width: 550px)
+  .m-2
+    img
+      height: 67.5vh
+
+@media screen and (max-width: 400px)
+  .m-2
+    img
+      height: 35vh
+
+.row2
+  display: flex
+  flex-wrap: wrap
+  padding-bottom: 14%
+  margin-right: -15px
+  margin-left: -15px
+
+
+.card-title
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  padding: 5px
+
+.container
+  max-width: 80%
+
+@media (max-width: 1200px)
+  .container
+    max-width: 1140px!important
+
+@media (max-width: 992px)
+  .container
+    max-width: 960px!important
+
+@media (max-width: 768px)
+  .container
+    max-width: 720px!important
+
+@media (max-width: 576px)
+  .container
+    max-width: 540px!important

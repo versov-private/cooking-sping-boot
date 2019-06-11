@@ -1,0 +1,16 @@
+[{
+  "name": "Рыба",
+  "image": "/assets/images/dishType-1.jpg"
+},{
+  "name": "Коктейли",
+  "image": "/assets/images/dishType-2.jpg"
+},{
+  "name": "Салаты",
+  "image": "/assets/images/dishType-3.jpg"
+},{
+  "name": "Азиатская",
+  "image": "/assets/images/dishType-4.jpg"
+},{
+  "name": "Пицца",
+  "image": "/assets/images/dishType-5.jpg"
+}]

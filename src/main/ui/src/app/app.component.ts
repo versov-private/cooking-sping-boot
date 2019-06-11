@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {TokenStorageService} from "./shared/services/auth/token-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,22 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit{
-  title = 'app';
+  private roles: string[];
+  private authority: string;
 
-  message: any;
+  constructor(private tokenStorage: TokenStorageService) { }
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.http.get('http://localhost:8080/dishes').subscribe(data => {
-      console.log('DATA', data);
-      this.message = data;
-    })
+  ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          return false;
+        }
+        this.authority = 'user';
+        return true;
+      });
+    }
   }
 }

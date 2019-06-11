@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "firstName": "Clinton",
+    "lastName": "Tsang",
+    "email": "ctsang@gmail.com",
+    "dateOfBirth": "1967-12-13",
+    "sex": "Мужской",
+    "avatar": "/assets/images/client-1.jpg"
+  },
+  {
+    "id": 2,
+    "firstName": "Fiona",
+    "lastName": "Verdejo",
+    "email": "fverdejo@gmail.com",
+    "dateOfBirth": "1992-06-22",
+    "sex": "Женский",
+    "avatar": "/assets/images/client-2.jpg"
+  },
+  {
+    "id": 3,
+    "firstName": "Albert",
+    "lastName": "Vandershtain",
+    "email": "vandershtain@gmail.com",
+    "dateOfBirth": "1989-07-05",
+    "sex": "Мужской",
+    "avatar": "/assets/images/client-3.jpg"
+  },
+  {
+    "id": 4,
+    "firstName": "Jasmine",
+    "lastName": "Tompson",
+    "email": "tompson@gmail.com",
+    "dateOfBirth": "2006-07-05",
+    "sex": "Женский",
+    "avatar": "/assets/images/client-4.jpg"
+  },
+  {
+    "id": 4,
+    "firstName": "Sophia",
+    "lastName": "Loren",
+    "email": "lorenson@gmail.com",
+    "dateOfBirth": "1958-07-05",
+    "sex": "Женский",
+    "avatar": "/assets/images/client-5.jpg"
+  }
+]

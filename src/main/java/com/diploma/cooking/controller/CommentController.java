@@ -28,7 +28,7 @@ public class CommentController {
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
-    @GetMapping("/api/comments/{id}")
+    @GetMapping("/shared/comments/{id}")
     public ResponseEntity<Comment> findById(@PathVariable Long id) {
         return commentService.findById(id)
                 .map(comment -> new ResponseEntity<>(comment, HttpStatus.OK))

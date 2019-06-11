@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/shared")
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
@@ -65,6 +65,7 @@ public class AuthenticationController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+        System.out.println("User : " + signUpRequest);
         if (userService.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new MessageResponse("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
