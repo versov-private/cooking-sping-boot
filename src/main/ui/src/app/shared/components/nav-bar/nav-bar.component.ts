@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../../services/auth/token-storage.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  isNavBarCollapsed = true;
   navBarOpen = false;
 
-  constructor() { }
+  constructor(private tokenService: TokenStorageService) { }
 
   ngOnInit() {
   }
 
   toggleNavBar() {
     this.navBarOpen = !this.navBarOpen;
+  }
+
+  logOut() {
+    this.tokenService.signOut();
+    window.location.reload();
   }
 
 }

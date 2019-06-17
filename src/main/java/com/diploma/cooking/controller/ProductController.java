@@ -1,21 +1,27 @@
 package com.diploma.cooking.controller;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Product;
+import com.diploma.cooking.service.DishService;
 import com.diploma.cooking.service.ProductService;
+import org.springframework.boot.autoconfigure.amqp.RabbitRetryTemplateCustomizer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class ProductController {
 
     private final ProductService productService;
+    private final DishService dishService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, DishService dishService) {
         this.productService = productService;
+        this.dishService = dishService;
     }
 
     @GetMapping("/products")
@@ -61,4 +67,20 @@ public class ProductController {
                 })
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
+
+    @GetMapping("/shared/products/dish/{id}")
+    public ResponseEntity<List<Product>> getProductsByDish(@PathVariable Long id) {
+        Dish dish = new Dish();
+        try{
+           dish = dishService.findById(id).get();
+        } catch (NoSuchElementException e){
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        List<Product> products = productService.findByDish(dish);
+        if(products.isEmpty())
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
 }

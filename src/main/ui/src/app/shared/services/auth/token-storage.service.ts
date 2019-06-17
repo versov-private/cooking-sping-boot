@@ -11,7 +11,7 @@ export class TokenStorageService {
   private roles: Array<string> = [];
   constructor() { }
 
-  signOut() {
+  public signOut() {
     window.sessionStorage.clear();
   }
 
@@ -50,4 +50,7 @@ export class TokenStorageService {
     return this.roles;
   }
 
+  public isLoggedIn(): boolean {
+    return this.getToken() != null && this.getAuthorities() != null && this.getUsername() != null;
+  }
 }

@@ -1,5 +1,6 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.RecipeStep;
 import com.diploma.cooking.repository.RecipeStepRepository;
 import com.diploma.cooking.service.RecipeStepService;
@@ -35,5 +36,10 @@ public class RecipeStepServiceImpl implements RecipeStepService {
     @Override
     public void delete(RecipeStep recipeStep) {
         recipeStepRepository.delete(recipeStep);
+    }
+
+    @Override
+    public List<RecipeStep> findByDish(Dish dish) {
+        return recipeStepRepository.findByDish(dish);
     }
 }

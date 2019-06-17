@@ -1,5 +1,6 @@
 package com.diploma.cooking.service;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.RecipeStep;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface RecipeStepService {
     Optional<RecipeStep> findById(Long id);
     RecipeStep saveOrUpdate(RecipeStep recipeStep);
     void delete(RecipeStep recipeStep);
+    List<RecipeStep> findByDish(Dish dish);
 }

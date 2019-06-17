@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Dish} from "../../shared/models/dish.model";
+import {Dish} from "../../models/dish.model";
 
 @Component({
   selector: 'app-dish-card',

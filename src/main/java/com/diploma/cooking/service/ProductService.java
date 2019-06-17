@@ -1,5 +1,6 @@
 package com.diploma.cooking.service;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Product;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface ProductService {
     Optional<Product> findById(Long id);
     Product saveOrUpdate(Product product);
     void delete(Product product);
+    List<Product> findByDish(Dish dish);
 }

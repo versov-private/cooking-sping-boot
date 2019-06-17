@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <a class="navbar-brand" href="#">
+    iCook
+  </a>
+  <button class="navbar-toggler" type="button"
+          (click)="toggleNavBar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse"
+       [ngClass]="{ 'show': navBarOpen }">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Recipes</a>
+      </li>
+
+      <li class="nav-item" *showAuth="false">
+        <a class="nav-link" routerLink="/login">Sign in</a>
+      </li>
+
+      <li class="nav-item" *showAuth="false">
+        <a class="nav-link" routerLink="/signup">Sign up</a>
+      </li>
+
+      <li class="nav-item" *showAuth="true">
+        <a class="nav-link" routerLink="/add-recipe">Add recipe</a>
+      </li>
+
+      <li class="nav-item" *showAuth="true">
+        <a class="nav-link" (click)="logOut()" href="#">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

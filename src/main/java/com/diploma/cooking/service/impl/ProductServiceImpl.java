@@ -1,5 +1,6 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Product;
 import com.diploma.cooking.repository.ProductRepository;
 import com.diploma.cooking.service.ProductService;
@@ -36,4 +37,11 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Product product) {
         productRepository.delete(product);
     }
+
+    @Override
+    public List<Product> findByDish(Dish dish) {
+        return productRepository.findByDish(dish);
+    }
+
+
 }

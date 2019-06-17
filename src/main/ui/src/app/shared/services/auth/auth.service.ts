@@ -4,6 +4,7 @@ import {LoginInfo} from "../../models/auth/login-info.model";
 import {Observable} from "rxjs";
 import {JwtResponse} from "../../models/auth/jwt-response.model";
 import {SignUpInfo} from "../../models/auth/sign-up-info.model";
+import {TokenStorageService} from "./token-storage.service";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,4 +27,5 @@ export class AuthService {
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signUpUrl, info, httpOptions);
   }
+
 }

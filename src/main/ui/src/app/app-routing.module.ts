@@ -5,6 +5,8 @@ import {UserComponent} from "./components/user/user.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {MainPageComponent} from "./components/main-page/main-page.component";
+import {AddRecipeComponent} from "./components/add-recipe/add-recipe.component";
 
 const routes: Routes = [
 
@@ -30,8 +32,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    component: MainPageComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'add-recipe',
+    component: AddRecipeComponent,
+  },
+  {
+    path: 'recipe',
+    component: AddRecipeComponent,
   }
 ];
 

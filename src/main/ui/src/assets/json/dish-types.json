@@ -1,16 +1,16 @@
 [{
-  "name": "Рыба",
+  "name": "Fish",
   "image": "/assets/images/dishType-1.jpg"
 },{
-  "name": "Коктейли",
+  "name": "Cocktails",
   "image": "/assets/images/dishType-2.jpg"
 },{
-  "name": "Салаты",
+  "name": "Salad",
   "image": "/assets/images/dishType-3.jpg"
 },{
-  "name": "Азиатская",
+  "name": "Asian",
   "image": "/assets/images/dishType-4.jpg"
 },{
-  "name": "Пицца",
+  "name": "Pizza",
   "image": "/assets/images/dishType-5.jpg"
 }]
