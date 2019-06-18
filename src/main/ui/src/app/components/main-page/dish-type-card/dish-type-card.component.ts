@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {DishType} from "../../../shared/models/dishType.model";
 
 @Component({
@@ -19,5 +19,10 @@ export class DishTypeCardComponent implements OnInit {
 
   toggleBlur(): void {
     this.isBlurred = !this.isBlurred;
+  }
+
+  @Output()
+  sortDishes(dishType: DishType){
+
   }
 }

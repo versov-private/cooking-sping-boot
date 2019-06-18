@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {Dish} from "../../shared/models/dish.model";
 import {DishType} from "../../shared/models/dishType.model";
 import {DishService} from "../../shared/services/dish.service";
@@ -20,5 +20,12 @@ export class MainPageComponent implements OnInit {
     this.dishService.getDishes().subscribe(data => this.numberOfDishes = data.length  );
     this.dishService.getDishes().subscribe(data => this.dishes = data );
     this.dishTypeService.getDishTypes().subscribe( data => this.dishTypes = data);
+  }
+
+  @Output()
+  sortDishes(dishType: DishType){
+    this.dishes = this.dishes.map( dish =>{
+      if(dish.type == dishType.name) return dish;
+    });
   }
 }

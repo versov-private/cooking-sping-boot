@@ -1,7 +1,11 @@
 <div class="card m-2">
-  <img class="card-img-top cursor" [src]="dish.image" alt="Card image cap">
+  <a routerLink="/recipe/{{dish.id}}">
+    <img class="card-img-top cursor" [src]="dish.image" alt="Card image cap">
+  </a>
   <div class="card-body">
-    <h5 class="card-title cursor" title="{{dish.name}}">{{dish.name}}</h5>
+    <a routerLink="/recipe/{{dish.id}}">
+      <h5 class="card-title cursor" title="{{dish.name}}">{{dish.name}}</h5>
+    </a>
     <hr>
     <div class="row2">
       <img class="avatar" [src]="dish.author.avatar" alt="Client's avatar"/>

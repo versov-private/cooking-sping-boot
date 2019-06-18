@@ -1,8 +1,6 @@
-<a href="#">
-  <div class="card min-h-200 m-1" (mouseenter)="toggleBlur()" (mouseleave)="toggleBlur()">
-    <img class="card-img-top" [ngClass]="{'mt-7': isBlurred}" [src]="dishType.image" alt="Card image cap">
-    <div class="card-body bg-danger">
-      <h5 class="card-title text-light text-center">{{dishType.name}}</h5>
-    </div>
+<div class="card min-h-200 m-1 cursor" (mouseenter)="toggleBlur()" (mouseleave)="toggleBlur()" >
+  <img class="card-img-top" [ngClass]="{'mt-7': isBlurred}" [src]="dishType.image" alt="Card image cap">
+  <div class="card-body bg-danger">
+    <h5 class="card-title text-light text-center">{{dishType.name}}</h5>
   </div>
-</a>
+</div>

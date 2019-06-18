@@ -22,6 +22,8 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { ShowAuthDirective } from './shared/directives/show-auth.directive';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { SingleRecipeComponent } from './components/single-recipe/single-recipe.component';
+import { RecipeComponent } from './shared/components/recipe/recipe.component';
+import { StorageComponent } from './components/storage/storage.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { SingleRecipeComponent } from './components/single-recipe/single-recipe.
     NavBarComponent,
     ShowAuthDirective,
     AddRecipeComponent,
-    SingleRecipeComponent
+    SingleRecipeComponent,
+    RecipeComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import {Client} from './client.model';
+import {IngredientC} from "./ingredient-c.model";
 
 export class Dish {
   id: number;
@@ -9,4 +10,5 @@ export class Dish {
   dateOfCreate: string;
   image: string;
   author: Client;
+  ingredients: IngredientC[];
 }

@@ -7,6 +7,8 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {MainPageComponent} from "./components/main-page/main-page.component";
 import {AddRecipeComponent} from "./components/add-recipe/add-recipe.component";
+import {RecipeComponent} from "./shared/components/recipe/recipe.component";
+import {StorageComponent} from "./components/storage/storage.component";
 
 const routes: Routes = [
 
@@ -40,8 +42,12 @@ const routes: Routes = [
     component: AddRecipeComponent,
   },
   {
-    path: 'recipe',
-    component: AddRecipeComponent,
+    path: 'recipe/:id',
+    component: RecipeComponent,
+  },
+  {
+    path: 'storage',
+    component: StorageComponent,
   }
 ];
 

@@ -1,9 +1,30 @@
-[{"id": 1, "name": "Котлеты «Мон Шер»", "type": "Жаркое", "description": "Я люблю хорошие рецепты, читаю книги и нахожу что-то новое для себя.","dateOfCreate": "2019-02-17","image": "/assets/images/dish-1.jpg", "author": {"id": 1, "firstName": "Clinton", "lastName": "Tsang", "email": "ctsang@gmail.com", "dateOfBirth": "1967-12-13", "sex": "Мужской", "avatar": "/assets/images/client-1.jpg"}},
+[{"id": 1, "name": "Cutlets \"Mon Cher\"", "type": "Fish", "description": "These easy vegetarian patties are great for a snack or as an appetizer. Serve with ketchup or Indian style mint chutney on the side. You can also add cauliflower or corn if you choose.","dateOfCreate": "2019-02-17","image": "/assets/images/dish-1.jpg", "author": {"id": 1, "firstName": "Clinton", "lastName": "Tsang", "email": "ctsang@gmail.com", "dateOfBirth": "1967-12-13", "sex": "Male", "avatar": "/assets/images/client-1.jpg"},"ingredients": [
+  {
+    "id": 1,
+    "product": "Fish",
+    "quantity": 200
+  },
   {
     "id": 2,
-    "name": "Торт с клубникой и белым шоколадом",
-    "type": "Десерт",
-    "description": "Представляю вам тарт, насыщенный ароматами клубники, с нежным",
+    "product": "Flour",
+    "quantity": 75
+  },
+  {
+    "id": 3,
+    "product": "oil",
+    "quantity": 50
+  },
+  {
+    "id": 4,
+    "product": "Souse",
+    "quantity": 50
+  }
+]},
+  {
+    "id": 2,
+    "name": "Сake with strawberry",
+    "type": "Desert",
+    "description": "Easy Strawberry Cake with a soft and moist crumb and bursting with fresh strawberry flavor! One of our all-time favorite strawberry recipes.\n\nFresh summer strawberries add incredible flavor to dessert like our No-Bake Cheesecake, the popular Strawberry Pretzel Salad, or Mini Cheesecakes. If I had my way, I’d add homemade Strawberry Sauce to everything! If you love strawberries, this cake is a must-try.",
     "timeOfCooking": 120,
     "dateOfCreate": "2019-02-17",
     "image": "/assets/images/dish-2.jpg",
@@ -13,15 +34,37 @@
       "lastName": "Vandershtain",
       "email": "vandershtain@gmail.com",
       "dateOfBirth": "1989-07-05",
-      "sex": "Мужской",
+      "sex": "Male",
       "avatar": "/assets/images/client-3.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Flour",
+        "quantity": 200
+      },
+      {
+        "id": 2,
+        "product": "Strawberry",
+        "quantity": 75
+      },
+      {
+        "id": 3,
+        "product": "Chocolate",
+        "quantity": 50
+      },
+      {
+        "id": 4,
+        "product": "Cream",
+        "quantity": 50
+      }
+    ]
   },
   { "id": 3,
-    "name": "Овсяные батончики с малиновым джемом и орехами",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
-    "timeOfCooking": 120,
+    "name": "WHITE RUSSIAN",
+    "type": "Cocktails",
+    "description": "Created in 1949 by a Belgian bartender named Gustave Tops, and popularized by the 1998 film “The Big Lebowski,” the White Russian continues to be a world-wide favorite. The White Russian combines heavy cream (or half and half), vodka, and coffee liqueur for a luxurious nightcap.",
+    "timeOfCooking": 10,
     "dateOfCreate": "2019-02-17",
     "image": "/assets/images/dish-3.jpg",
     "author": {
@@ -30,15 +73,32 @@
       "lastName": "Verdejo",
       "email": "fverdejo@gmail.com",
       "dateOfBirth": "1992-06-22",
-      "sex": "Женский",
+      "sex": "Female",
       "avatar": "/assets/images/client-2.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Vodka",
+        "quantity": 25
+      },
+      {
+        "id": 1,
+        "product": "Milk",
+        "quantity": 50
+      },
+      {
+        "id": 1,
+        "product": "Coffee",
+        "quantity": 30
+      }
+    ]
   },
   { "id": 4,
-    "name": "Американские блины",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
-    "timeOfCooking": 200,
+    "name": "GIN GIN MULE",
+    "type": "Cocktails",
+    "description": "You might do a double-take when you see the Gin Gin Mule on the list of the world’s most popular cocktails. This newcomer is a cross between a Moscow Mule and a Mojito, with gin starring in the show. The creative cocktail was first made in 2000 by Audrey Saunders, owner of Pegu Club in New York City.",
+    "timeOfCooking": 20,
     "dateOfCreate": "2019-02-17",
     "image": "/assets/images/dish-4.jpg",
     "author": {
@@ -47,15 +107,32 @@
       "lastName": "Tompson",
       "email": "tompson@gmail.com",
       "dateOfBirth": "2006-07-05",
-      "sex": "Женский",
+      "sex": "Female",
       "avatar": "/assets/images/client-4.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Gin",
+        "quantity": 50
+      },
+      {
+        "id": 1,
+        "product": "Shwepes",
+        "quantity": 50
+      },
+      {
+        "id": 1,
+        "product": "Mule",
+        "quantity": 30
+      }
+    ]
   },
   {
     "id": 5,
-    "name": "Блины на кефире",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
+    "name": "Caesar Salad Recipe",
+    "type": "Salad",
+    "description": "Classic Caesar Salad with crisp homemade croutons and a light caesar dressing – for when you want to impress your dinner guests.\n\nIf you love caesar recipes as much as we do, check out our creamy caesar dressing and caesar pasta salad.",
     "timeOfCooking": 150,
     "dateOfCreate": "2019-02-20",
     "image": "/assets/images/dish-5.jpg",
@@ -65,15 +142,37 @@
       "lastName": "Tsang",
       "email": "ctsang@gmail.com",
       "dateOfBirth": "1967-12-13",
-      "sex": "Мужской",
+      "sex": "Male",
       "avatar": "/assets/images/client-1.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Cheese",
+        "quantity": 150
+      },
+      {
+        "id": 2,
+        "product": "Salad",
+        "quantity": 200
+      },
+      {
+        "id": 3,
+        "product": "Meat",
+        "quantity": 200
+      },
+      {
+        "id": 4,
+        "product": "Souse",
+        "quantity": 100
+      }
+    ]
   },
   {
     "id": 6,
-    "name": "Блинные мешочки",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
+    "name": "Neapolitan Pizza",
+    "type": "Pizza",
+    "description": "While you might not be able to make a truly authentic Neapolitan pizza at home without a wood-fired oven, this recipe will get you pretty close.\n\nMake sure to use high-quality ingredients for the best possible results. And if you’re tempted to add more toppings, you might want to try this pesto and white bean pizza recipe instead—a true Neapolitan pizza only has this simple tomato sauce, fresh mozzarella cheese, and fresh basil. But it's still delicious!",
     "timeOfCooking": 60,
     "dateOfCreate": "2019-02-20",
     "image": "/assets/images/dish-6.jpg",
@@ -83,15 +182,37 @@
       "lastName": "Tsang",
       "email": "ctsang@gmail.com",
       "dateOfBirth": "1967-12-13",
-      "sex": "Мужской",
+      "sex": "Male",
       "avatar": "/assets/images/client-1.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Flour",
+        "quantity": 500
+      },
+      {
+        "id": 1,
+        "product": "Cheese",
+        "quantity": 100
+      },
+      {
+        "id": 1,
+        "product": "Calitsone",
+        "quantity": 50
+      },
+      {
+        "id": 1,
+        "product": "Black Olives",
+        "quantity": 20
+      }
+    ]
   },
   {
     "id": 7,
-    "name": "Гуляш с фасолью",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
+    "name": "Cake with Fruit",
+    "type": "Desert",
+    "description": "Summer — the season of impromptu picnics, backyard get-togethers, and lazy dinners — demands hospitable and casual desserts that come together easily and feed everyone from large to small.\n\nThis is one of my favorites: A one-bowl butter cake, baked in a pretty dish, and topped with tangy whipped cream and piles of summer fruit. Easy as one-two-three, and beautiful too.",
     "timeOfCooking": 150,
     "dateOfCreate": "2019-02-20",
     "image": "/assets/images/dish-7.jpg",
@@ -101,15 +222,37 @@
       "lastName": "Tompson",
       "email": "tompson@gmail.com",
       "dateOfBirth": "2006-07-05",
-      "sex": "Женский",
+      "sex": "Female",
       "avatar": "/assets/images/client-4.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Flour",
+        "quantity": 100
+      },
+      {
+        "id": 1,
+        "product": "Strawberry",
+        "quantity": 50
+      },
+      {
+        "id": 1,
+        "product": "Orange",
+        "quantity": 150
+      },
+      {
+        "id": 1,
+        "product": "Kiwi",
+        "quantity": 100
+      }
+    ]
   },
   {
     "id": 8,
-    "name": "Ягодная «Павлова»",
-    "type": "Десерт",
-    "description": "Такие батончики — прекрасный полезный перекус",
+    "name": "Diabola Pizza",
+    "type": "Pizza",
+    "description": "Some like it hot. We like it extra hot! Again it’s the Diablo Pizza. Check out the new version with three types of meat.",
     "timeOfCooking": 150,
     "dateOfCreate": "2019-02-20",
     "image": "/assets/images/dish-8.jpg",
@@ -119,8 +262,25 @@
       "lastName": "Vandershtain",
       "email": "vandershtain@gmail.com",
       "dateOfBirth": "1989-07-05",
-      "sex": "Мужской",
+      "sex": "Male",
       "avatar": "/assets/images/client-3.jpg"
-    }
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "product": "Flour",
+        "quantity": 300
+      },
+      {
+        "id": 1,
+        "product": "Cheese",
+        "quantity": 100
+      },
+      {
+        "id": 1,
+        "product": "Diabola",
+        "quantity": 50
+      }
+    ]
   }
 ]
