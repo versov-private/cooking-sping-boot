@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface RecipeStepRepository extends JpaRepository<RecipeStep, Long> {
 
-    List<RecipeStep> findByDish(Dish dish);
+    List<RecipeStep> findByDishOrderByNumberOfStep(Dish dish);
 }

@@ -1,10 +1,9 @@
 import {Client} from "./client.model";
-import {Product} from "./product.model";
 import {RecipeStep} from "./recipe-step.model";
 import {Dish} from "./dish.model";
 import {Ingredient} from "./ingredient.model";
 
-export class DishFull {
+export class DishDetailed {
   id: number;
   name: string;
   type: string;
@@ -15,9 +14,10 @@ export class DishFull {
   author: Client;
   ingredients: Ingredient[];
   recipeSteps: RecipeStep[];
+  numberOfLikes: number;
 
 
-  constructor(dish: Dish, ingredients: Ingredient[], recipeSteps: RecipeStep[]) {
+  constructor(dish: Dish, ingredients: Ingredient[], recipeSteps: RecipeStep[], likes: number) {
     this.id = dish.id;
     this.name = dish.name;
     this.type = dish.type;
@@ -28,6 +28,7 @@ export class DishFull {
     this.author = dish.author;
     this.ingredients = ingredients;
     this.recipeSteps = recipeSteps;
+    this.numberOfLikes = likes;
   }
 
   convertToDish(): Dish {

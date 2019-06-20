@@ -1,5 +1,6 @@
 package com.diploma.cooking.service;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Ingredient;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface IngredientService {
     Optional<Ingredient> findById(Long id);
     Ingredient saveOrUpdate(Ingredient ingredient);
     void delete(Ingredient ingredient);
+    List<Ingredient> findByDish(Dish dish);
 }

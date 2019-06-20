@@ -20,7 +20,7 @@ export class IngredientService {
   }
 
   findByDish(dish: Dish): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(this.UrlShared + dish.id);
+    return this.http.get<Ingredient[]>(this.UrlShared + "dish/" + dish.id);
   }
 
   save(ingredient: Ingredient):Observable<number> {

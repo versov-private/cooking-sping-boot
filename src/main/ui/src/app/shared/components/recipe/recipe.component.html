@@ -9,39 +9,33 @@
         <ol class="breadcrumb opacity-5">
           <li class="active">Recipe</li>
         </ol>
-        <h1 class="font-weight-300">{{dish.name}}</h1>
+        <h1 class="font-weight-300">{{dishDetailed?.name}}</h1>
       </div>
     </div>
     <div class="container">
 
       <div class="margin-bottom-40px card border-0 box-shadow">
-        <div class="card-img-top"><a href="#"><img [src]="dish.image" alt=""></a></div>
+        <!--<div class="card-img-top"><a href="#"><img [src]="dish?.image" alt=""></a></div>-->
         <div class="padding-lr-30px padding-tb-20px">
-          {{dish.description}}
+          {{dishDetailed?.description}}
           <hr>
           <h3>Ingredients</h3>
           <ul>
-            <li *ngFor="let ingr of dish.ingredients">
-              <strong>{{ingr.quantity}} lbs</strong> {{ingr.product}}
+            <li *ngFor="let ingredient of dishDetailed?.ingredients">
+              <strong>{{ingredient.quantityOfProduct}} lbs</strong> {{ingredient.product.name}}
             </li>
 
           </ul>
           <h3>Method</h3>
           <ol>
-            <li>preheat oven to 350º</li>
-            <li>bring noodles to a boil then drain</li>
-            <li>while noodles are cooking in a bowl mix ricotta cheese, mozzarella cheese and olives together. it will be thick</li>
-            <li>cook ground beef then drain</li>
-            <li>add spaghetti sauce to ground beef</li>
-            <li>add pasta to beef and sauce mix, stir until well blended then move to 16x9 casserole dish</li>
-            <li>spread cheese mixture all over evenly</li>
-            <li>place pepperonis on top snd remember to partially overlap pepperonis since they shrink</li>
-            <li>back in 350º oven for 20 minutes</li>
+            <li *ngFor="let recipeStep of dishDetailed?.recipeSteps">{{recipeStep?.description}}</li>
           </ol>
           <hr>
           <div class="row no-gutters">
-            <div class="col-4 text-left"><a href="#" class="text-red"><i class="far fa-heart"></i> Save</a></div>
-            <div class="col-8 text-right"><a href="#" class="text-grey-2"><i class="fas fa-users"></i> 6-8 servings</a></div>
+            <div class="col-4 text-left">
+              <app-like [numberOfLikes]="dishDetailed?.numberOfLikes"></app-like>
+            </div>
+            <div class="col-8 text-right"><span class="text-grey">{{dishDetailed?.dateOfCreate | date}}</span></div>
           </div>
         </div>
       </div>

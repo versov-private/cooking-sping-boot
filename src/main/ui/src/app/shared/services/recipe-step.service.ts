@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Dish} from "../models/dish.model";
 import {Observable} from "rxjs";
 import {RecipeStep} from "../models/recipe-step.model";
-import {Ingredient} from "../models/ingredient.model";
 
 @Injectable({
   providedIn: 'root'

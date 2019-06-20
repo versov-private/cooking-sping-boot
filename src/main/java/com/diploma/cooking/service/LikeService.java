@@ -1,5 +1,6 @@
 package com.diploma.cooking.service;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Like;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface LikeService {
     Optional<Like> findById(Long id);
     Like saveOrUpdate(Like like);
     void delete(Like like);
+    Long findQuantityByDish(Dish dish);
 }

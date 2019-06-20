@@ -1,6 +1,9 @@
 package com.diploma.cooking.controller;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Like;
+import com.diploma.cooking.model.RecipeStep;
+import com.diploma.cooking.service.DishService;
 import com.diploma.cooking.service.LikeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,14 +11,17 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class LikeController {
 
     private final LikeService likeService;
+    private final DishService dishService;
 
-    public LikeController(LikeService likeService) {
+    public LikeController(LikeService likeService, DishService dishService) {
         this.likeService = likeService;
+        this.dishService = dishService;
     }
 
     @GetMapping("/likes")
@@ -60,5 +66,20 @@ public class LikeController {
                     return new ResponseEntity<>(like, HttpStatus.OK);
                 })
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/shared/likes/dish/{id}")
+    public ResponseEntity<Long> findQuantityByDish(@PathVariable Long id) {
+        Dish dish = new Dish();
+        try{
+            dish = dishService.findById(id).orElse(null);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        Long numberOfLikes = likeService.findQuantityByDish(dish);
+        if(numberOfLikes == null)
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(numberOfLikes, HttpStatus.OK);
     }
 }

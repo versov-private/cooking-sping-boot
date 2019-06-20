@@ -12,5 +12,5 @@ public interface RecipeStepService {
     Optional<RecipeStep> findById(Long id);
     RecipeStep saveOrUpdate(RecipeStep recipeStep);
     void delete(RecipeStep recipeStep);
-    List<RecipeStep> findByDish(Dish dish);
+    List<RecipeStep> findByDishOrderByNumberOfStep(Dish dish);
 }

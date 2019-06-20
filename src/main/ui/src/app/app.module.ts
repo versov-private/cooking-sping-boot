@@ -24,6 +24,14 @@ import { AddRecipeComponent } from './components/add-recipe/add-recipe.component
 import { SingleRecipeComponent } from './components/single-recipe/single-recipe.component';
 import { RecipeComponent } from './shared/components/recipe/recipe.component';
 import { StorageComponent } from './components/storage/storage.component';
+import {TokenStorageService} from "./shared/services/auth/token-storage.service";
+import {AuthService} from "./shared/services/auth/auth.service";
+import {RecipeStepService} from "./shared/services/recipe-step.service";
+import {ProductService} from "./shared/services/product.service";
+import {IngredientService} from "./shared/services/ingredient.service";
+import {DishService} from "./shared/services/dish.service";
+import {DishFullService} from "./shared/services/dish-full.service";
+import { LikeComponent } from './shared/components/like/like.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +53,8 @@ import { StorageComponent } from './components/storage/storage.component';
     AddRecipeComponent,
     SingleRecipeComponent,
     RecipeComponent,
-    StorageComponent
+    StorageComponent,
+    LikeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,7 @@ import { StorageComponent } from './components/storage/storage.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, TokenStorageService, AuthService, RecipeStepService, ProductService, IngredientService, DishService, DishFullService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

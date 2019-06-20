@@ -75,7 +75,7 @@ public class RecipeStepController {
         }catch (NoSuchElementException e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        List<RecipeStep> recipeSteps = recipeStepService.findByDish(dish);
+        List<RecipeStep> recipeSteps = recipeStepService.findByDishOrderByNumberOfStep(dish);
         if(recipeSteps.isEmpty())
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 

@@ -39,7 +39,7 @@ public class RecipeStepServiceImpl implements RecipeStepService {
     }
 
     @Override
-    public List<RecipeStep> findByDish(Dish dish) {
-        return recipeStepRepository.findByDish(dish);
+    public List<RecipeStep> findByDishOrderByNumberOfStep(Dish dish) {
+        return recipeStepRepository.findByDishOrderByNumberOfStep(dish);
     }
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {DishService} from "./dish.service";
-import {ProductService} from "./product.service";
 import {RecipeStepService} from "./recipe-step.service";
-import {DishFull} from "../models/dish-full.model";
+import {DishDetailed} from "../models/dish-detailed.model";
 import {Dish} from "../models/dish.model";
-import {Product} from "../models/product.model";
 import {RecipeStep} from "../models/recipe-step.model";
 import {IngredientService} from "./ingredient.service";
 import {Ingredient} from "../models/ingredient.model";
+import {Observable} from "rxjs";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,19 @@ export class DishFullService {
 
   constructor(private dishService: DishService, private ingredientService: IngredientService, private recipeStepService: RecipeStepService) { }
 
-  findById(id: number): DishFull {
-    this.dishService.findById(id).subscribe(data => this.dish = data );
-    this.ingredientService.findByDish(this.dish).subscribe( data => this.ingredients = data);
-    this.recipeStepService.findByDish(this.dish).subscribe( data => this.recipeSteps = data);
-
-    return new DishFull(this.dish, this.ingredients, this.recipeSteps);
+  findById(id: number):  Observable<DishDetailed> {
+    let dishFull: Observable<DishDetailed>;
+    this.dishService.findById(id).subscribe(dish => {
+      this.ingredientService.findByDish(dish).subscribe(ingredients => {
+        this.recipeStepService.findByDish(dish).subscribe(recipeSteps => {
+          dishFull = of(new DishDetailed(dish, ingredients, recipeSteps));
+        })
+      })
+    });
+    return
   }
 
-  save(dishFull: DishFull) {
+  save(dishFull: DishDetailed) {
     this.dish = dishFull.convertToDish();
     this.ingredients = dishFull.ingredients;
     this.recipeSteps = dishFull.recipeSteps;

@@ -1,5 +1,6 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Like;
 import com.diploma.cooking.repository.LikeRepository;
 import com.diploma.cooking.service.LikeService;
@@ -35,5 +36,10 @@ public class LikeServiceImpl implements LikeService {
     @Override
     public void delete(Like like) {
         likeRepository.delete(like);
+    }
+
+    @Override
+    public Long findQuantityByDish(Dish dish) {
+        return likeRepository.findQuantityByDish(dish);
     }
 }

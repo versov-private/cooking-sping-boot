@@ -8,8 +8,8 @@ import {Observable} from 'rxjs';
 })
 export class DishService {
 
-  // private readonly URL: string = 'http://localhost:8080/shared/dishes/';
-  private readonly URL: string = '/assets/json/dishes.json';
+  private readonly URL: string = 'http://localhost:8080/shared/dishes/';
+  // private readonly URL: string = '/assets/json/dishes.json';
   private readonly UrlCrude: string = "http://localhost:8080/dishes/";
 
   constructor(private http: HttpClient) {

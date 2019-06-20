@@ -1,5 +1,6 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Ingredient;
 import com.diploma.cooking.repository.IngredientRepository;
 import com.diploma.cooking.service.IngredientService;
@@ -35,5 +36,10 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public void delete(Ingredient ingredient) {
         ingredientRepository.delete(ingredient);
+    }
+
+    @Override
+    public List<Ingredient> findByDish(Dish dish) {
+        return ingredientRepository.findByDish(dish);
     }
 }
