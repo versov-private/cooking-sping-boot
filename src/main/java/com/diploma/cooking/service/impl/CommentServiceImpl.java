@@ -1,6 +1,8 @@
 package com.diploma.cooking.service.impl;
 
 import com.diploma.cooking.model.Comment;
+import com.diploma.cooking.model.Dish;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.repository.CommentRepository;
 import com.diploma.cooking.service.CommentService;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,20 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void delete(Comment comment) {
         commentRepository.delete(comment);
+    }
+
+    @Override
+    public List<Comment> findByDish(Dish dish) {
+        return commentRepository.findByDish(dish);
+    }
+
+    @Override
+    public List<Comment> findByUser(User user) {
+        return commentRepository.findByUser(user);
+    }
+
+    @Override
+    public Comment findByDishAndUser(Dish dish, User user) {
+        return commentRepository.findByDishAndUser(dish, user);
     }
 }

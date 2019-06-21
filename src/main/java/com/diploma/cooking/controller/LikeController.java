@@ -70,7 +70,7 @@ public class LikeController {
 
     @GetMapping("/shared/likes/dish/{id}")
     public ResponseEntity<Long> findQuantityByDish(@PathVariable Long id) {
-        Dish dish = new Dish();
+        Dish dish;
         try{
             dish = dishService.findById(id).orElse(null);
         }catch (NoSuchElementException e){

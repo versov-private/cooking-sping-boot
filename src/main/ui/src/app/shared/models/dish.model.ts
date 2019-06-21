@@ -1,4 +1,4 @@
-import {Client} from './client.model';
+import {User} from './user.model';
 import {IngredientC} from "./ingredient-c.model";
 
 export class Dish {
@@ -9,6 +9,6 @@ export class Dish {
   timeOfCooking: number;
   dateOfCreate: string;
   image: string;
-  author: Client;
+  author: User;
   ingredients: IngredientC[];
 }

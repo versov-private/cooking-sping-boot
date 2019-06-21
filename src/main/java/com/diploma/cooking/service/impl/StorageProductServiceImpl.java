@@ -1,5 +1,7 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Product;
+import com.diploma.cooking.model.Storage;
 import com.diploma.cooking.model.StorageProduct;
 import com.diploma.cooking.repository.StorageProductRepository;
 import com.diploma.cooking.service.StorageProductService;
@@ -35,5 +37,10 @@ public class StorageProductServiceImpl implements StorageProductService {
     @Override
     public void delete(StorageProduct storageProduct) {
         storageProductRepository.delete(storageProduct);
+    }
+
+    @Override
+    public StorageProduct findByStorageAndProduct(Storage storage, Product product) {
+        return storageProductRepository.findByStorageAndProduct(storage, product);
     }
 }

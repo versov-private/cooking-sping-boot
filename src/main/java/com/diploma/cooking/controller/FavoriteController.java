@@ -1,7 +1,9 @@
 package com.diploma.cooking.controller;
 
 import com.diploma.cooking.model.Favorite;
+import com.diploma.cooking.service.DishService;
 import com.diploma.cooking.service.FavoriteService;
+import com.diploma.cooking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,9 +15,14 @@ import java.util.List;
 public class FavoriteController {
 
     private final FavoriteService favoriteService;
+    private final UserService userService;
+    private final DishService dishService;
 
-    public FavoriteController(FavoriteService favoriteService) {
+
+    public FavoriteController(FavoriteService favoriteService, UserService userService, DishService dishService) {
         this.favoriteService = favoriteService;
+        this.userService = userService;
+        this.dishService = dishService;
     }
 
     @GetMapping("/favorites")
@@ -64,4 +71,13 @@ public class FavoriteController {
                 })
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
     }
+
+    @GetMapping("/favorites/user/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<Favorite>> findByUser(@PathVariable Long id) {
+        return userService.findById(id)
+                .map(user -> new ResponseEntity<>(favoriteService.findByUser(user), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
 }

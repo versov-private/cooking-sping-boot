@@ -1,6 +1,8 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Product;
 import com.diploma.cooking.model.Storage;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.repository.StorageRepository;
 import com.diploma.cooking.service.StorageService;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,15 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public void delete(Storage storage) {
         storageRepository.delete(storage);
+    }
+
+    @Override
+    public Storage findByUser(User user) {
+        return storageRepository.findByUser(user);
+    }
+
+    @Override
+    public List<Storage> findByProduct(Product product) {
+        return storageRepository.findByProduct(product);
     }
 }

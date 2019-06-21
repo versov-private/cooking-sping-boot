@@ -1,6 +1,8 @@
 package com.diploma.cooking.service.impl;
 
+import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Favorite;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.repository.FavoriteRepository;
 import com.diploma.cooking.service.FavoriteService;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,15 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public void delete(Favorite favorite) {
         favoriteRepository.delete(favorite);
+    }
+
+    @Override
+    public List<Favorite> findByUser(User user) {
+        return favoriteRepository.findByUser(user);
+    }
+
+    @Override
+    public List<Favorite> findByDish(Dish dish) {
+        return favoriteRepository.findByDish(dish);
     }
 }

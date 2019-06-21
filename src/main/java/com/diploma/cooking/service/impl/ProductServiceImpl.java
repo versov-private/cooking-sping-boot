@@ -2,6 +2,8 @@ package com.diploma.cooking.service.impl;
 
 import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Product;
+import com.diploma.cooking.model.Storage;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.repository.ProductRepository;
 import com.diploma.cooking.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByDish(Dish dish) {
         return productRepository.findByDish(dish);
+    }
+
+    @Override
+    public List<Product> findByStorage(Storage storage) {
+        return productRepository.findByStorage(storage);
+    }
+
+    @Override
+    public List<Product> findByUser(User user) {
+        return productRepository.findByUser(user);
     }
 
 

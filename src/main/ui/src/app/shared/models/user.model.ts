@@ -1,6 +1,6 @@
 import {Role} from "./role.model";
 
-export class Client {
+export class User {
   id: number;
   firstName: string;
   lastName: string;

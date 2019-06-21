@@ -1,7 +1,8 @@
-import {Client} from "./client.model";
+import {User} from "./user.model";
 import {RecipeStep} from "./recipe-step.model";
 import {Dish} from "./dish.model";
 import {Ingredient} from "./ingredient.model";
+import {Like} from "./like.model";
 
 export class DishDetailed {
   id: number;
@@ -11,7 +12,7 @@ export class DishDetailed {
   timeOfCooking: number;
   dateOfCreate: string;
   image: string;
-  author: Client;
+  author: User;
   ingredients: Ingredient[];
   recipeSteps: RecipeStep[];
   numberOfLikes: number;

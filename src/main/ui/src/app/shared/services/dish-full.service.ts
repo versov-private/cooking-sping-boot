@@ -6,8 +6,6 @@ import {Dish} from "../models/dish.model";
 import {RecipeStep} from "../models/recipe-step.model";
 import {IngredientService} from "./ingredient.service";
 import {Ingredient} from "../models/ingredient.model";
-import {Observable} from "rxjs";
-import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +17,6 @@ export class DishFullService {
   private recipeSteps: RecipeStep[];
 
   constructor(private dishService: DishService, private ingredientService: IngredientService, private recipeStepService: RecipeStepService) { }
-
-  findById(id: number):  Observable<DishDetailed> {
-    let dishFull: Observable<DishDetailed>;
-    this.dishService.findById(id).subscribe(dish => {
-      this.ingredientService.findByDish(dish).subscribe(ingredients => {
-        this.recipeStepService.findByDish(dish).subscribe(recipeSteps => {
-          dishFull = of(new DishDetailed(dish, ingredients, recipeSteps));
-        })
-      })
-    });
-    return
-  }
 
   save(dishFull: DishDetailed) {
     this.dish = dishFull.convertToDish();

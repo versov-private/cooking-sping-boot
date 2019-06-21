@@ -1,7 +1,11 @@
 package com.diploma.cooking.controller;
 
 import com.diploma.cooking.model.Comment;
+import com.diploma.cooking.model.Dish;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.service.CommentService;
+import com.diploma.cooking.service.DishService;
+import com.diploma.cooking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,9 +17,13 @@ import java.util.List;
 public class CommentController {
 
     private final CommentService commentService;
+    private final DishService dishService;
+    private final UserService userService;
 
-    public CommentController(CommentService commentService) {
+    public CommentController(CommentService commentService, DishService dishService, UserService userService) {
         this.commentService = commentService;
+        this.dishService = dishService;
+        this.userService = userService;
     }
 
     @GetMapping("/comments")
@@ -63,4 +71,31 @@ public class CommentController {
                 })
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
+
+    @GetMapping("/shared/comments/dish/{id}")
+    public ResponseEntity<List<Comment>> findByDish(@PathVariable Long id) {
+        return dishService.findById(id)
+                .map(dish -> new ResponseEntity<>(commentService.findByDish(dish), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/comments/user/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<List<Comment>> findByUser(@PathVariable Long id) {
+        return userService.findById(id)
+                .map(user -> new ResponseEntity<>(commentService.findByUser(user), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/comments/dish/{dishId}/user/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<Comment> findByDishAndUser(@PathVariable("dishId") Long dishId, @PathVariable("userId") Long userId) {
+        return dishService.findById(dishId)
+                .map(dish -> userService.findById(userId)
+                        .map(user -> new ResponseEntity<>(commentService.findByDishAndUser(dish, user), HttpStatus.OK))
+                        .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST))
+                )
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.diploma.cooking.service;
 
+import com.diploma.cooking.model.Product;
+import com.diploma.cooking.model.Storage;
 import com.diploma.cooking.model.StorageProduct;
 
 import java.util.List;
@@ -11,4 +13,5 @@ public interface StorageProductService {
     Optional<StorageProduct> findById(Long id);
     StorageProduct saveOrUpdate(StorageProduct storageProduct);
     void delete(StorageProduct storageProduct);
+    StorageProduct findByStorageAndProduct(Storage storage, Product product);
 }

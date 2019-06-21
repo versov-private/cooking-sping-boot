@@ -1,1 +1,8 @@
-<span class="text-red cursor"><i class="far fa-heart"></i> {{numberOfLikes}}</span>
+<div *ngIf="loggedIn; else unClickable">
+  <span class="text-red cursor" (click)="toggleLike()" )><i class="far fa-heart"></i> {{numberOfLikes}}</span>
+</div>
+
+<ng-template #unClickable>
+  <span class="text-red " ><i class="far fa-heart"></i> {{numberOfLikes}}</span>
+</ng-template>
+

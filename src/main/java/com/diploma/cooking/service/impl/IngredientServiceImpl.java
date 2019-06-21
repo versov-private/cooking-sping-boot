@@ -2,6 +2,7 @@ package com.diploma.cooking.service.impl;
 
 import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Ingredient;
+import com.diploma.cooking.model.Product;
 import com.diploma.cooking.repository.IngredientRepository;
 import com.diploma.cooking.service.IngredientService;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,10 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public List<Ingredient> findByDish(Dish dish) {
         return ingredientRepository.findByDish(dish);
+    }
+
+    @Override
+    public Ingredient findByDishAndProduct(Dish dish, Product product) {
+        return ingredientRepository.findByDishAndProduct(dish, product);
     }
 }
