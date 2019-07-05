@@ -80,4 +80,11 @@ public class FavoriteController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
+    @GetMapping("/favorites/dish/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<Favorite>> findByDish(@PathVariable Long id) {
+        return dishService.findById(id)
+                .map(dish -> new ResponseEntity<>(favoriteService.findByDish(dish), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
 }

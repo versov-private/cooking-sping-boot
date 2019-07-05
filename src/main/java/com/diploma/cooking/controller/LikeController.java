@@ -2,9 +2,9 @@ package com.diploma.cooking.controller;
 
 import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Like;
-import com.diploma.cooking.model.RecipeStep;
 import com.diploma.cooking.service.DishService;
 import com.diploma.cooking.service.LikeService;
+import com.diploma.cooking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,10 +18,12 @@ public class LikeController {
 
     private final LikeService likeService;
     private final DishService dishService;
+    private final UserService userService;
 
-    public LikeController(LikeService likeService, DishService dishService) {
+    public LikeController(LikeService likeService, DishService dishService, UserService userService) {
         this.likeService = likeService;
         this.dishService = dishService;
+        this.userService = userService;
     }
 
     @GetMapping("/likes")
@@ -81,5 +83,15 @@ public class LikeController {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<>(numberOfLikes, HttpStatus.OK);
+    }
+
+    @GetMapping("/likes/exist/dish/{dishId}/user/{username}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<Boolean> existsByDishAndUser(@PathVariable("dishId") Long dishId, @PathVariable("username") String username) {
+        return dishService.findById(dishId)
+                .map(dish -> userService.findByUsername(username)
+                                .map(user -> new ResponseEntity<>(likeService.existsByDishAndUser(dish, user), HttpStatus.OK))
+                                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST)))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 }

@@ -1,7 +1,9 @@
 package com.diploma.cooking.controller;
 
 import com.diploma.cooking.model.StorageProduct;
+import com.diploma.cooking.service.ProductService;
 import com.diploma.cooking.service.StorageProductService;
+import com.diploma.cooking.service.StorageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,9 +15,13 @@ import java.util.List;
 public class StorageProductController {
 
     private final StorageProductService storageProductService;
+    private final StorageService storageService;
+    private final ProductService productService;
 
-    public StorageProductController(StorageProductService storageProductService) {
+    public StorageProductController(StorageProductService storageProductService, StorageService storageService, ProductService productService) {
         this.storageProductService = storageProductService;
+        this.storageService = storageService;
+        this.productService = productService;
     }
 
     @GetMapping("/storage-products")
@@ -59,6 +65,17 @@ public class StorageProductController {
                     storageProductService.delete(storageProduct);
                     return new ResponseEntity<>(storageProduct, HttpStatus.OK);
                 })
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/storage-products/storage/{storageId}/product/{productId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<StorageProduct> findByStorageAndProduct(@PathVariable("storageId") Long storageId, @PathVariable("productId") Long productId) {
+        return storageService.findById(storageId)
+                .map(storage -> productService.findById(productId)
+                        .map(product -> new ResponseEntity<>(storageProductService.findByStorageAndProduct(storage, product), HttpStatus.OK))
+                        .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST))
+                )
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 }

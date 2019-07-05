@@ -2,9 +2,12 @@ package com.diploma.cooking.controller;
 
 import com.diploma.cooking.model.Dish;
 import com.diploma.cooking.model.Product;
+import com.diploma.cooking.model.Storage;
+import com.diploma.cooking.model.User;
 import com.diploma.cooking.service.DishService;
 import com.diploma.cooking.service.ProductService;
-import org.springframework.boot.autoconfigure.amqp.RabbitRetryTemplateCustomizer;
+import com.diploma.cooking.service.StorageService;
+import com.diploma.cooking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,10 +21,14 @@ public class ProductController {
 
     private final ProductService productService;
     private final DishService dishService;
+    private final StorageService storageService;
+    private final UserService userService;
 
-    public ProductController(ProductService productService, DishService dishService) {
+    public ProductController(ProductService productService, DishService dishService, StorageService storageService, UserService userService) {
         this.productService = productService;
         this.dishService = dishService;
+        this.storageService = storageService;
+        this.userService = userService;
     }
 
     @GetMapping("/products")
@@ -69,7 +76,7 @@ public class ProductController {
     }
 
     @GetMapping("/shared/products/dish/{id}")
-    public ResponseEntity<List<Product>> getProductsByDish(@PathVariable Long id) {
+    public ResponseEntity<List<Product>> findByDish(@PathVariable Long id) {
         Dish dish = new Dish();
         try{
            dish = dishService.findById(id).get();
@@ -77,6 +84,38 @@ public class ProductController {
             new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         List<Product> products = productService.findByDish(dish);
+        if(products.isEmpty())
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/products/storage/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<Product>> findByStorage(@PathVariable Long id) {
+        Storage storage = new Storage();
+        try{
+            storage = storageService.findById(id).get();
+        } catch (NoSuchElementException e){
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        List<Product> products = productService.findByStorage(storage);
+        if(products.isEmpty())
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/products/user/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<Product>> findByUser(@PathVariable Long id) {
+        User user = new User();
+        try{
+            user = userService.findById(id).get();
+        } catch (NoSuchElementException e){
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        List<Product> products = productService.findByUser(user);
         if(products.isEmpty())
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 

@@ -1,8 +1,8 @@
 <div *ngIf="loggedIn; else unClickable">
-  <span class="text-red cursor" (click)="toggleLike()" )><i class="far fa-heart"></i> {{numberOfLikes}}</span>
+  <span class="text-red cursor" [ngClass]="{'bg-danger': like != null}" (click)="toggleLike()"><i class="far fa-heart"></i> {{dishDetailed?.numberOfLikes}}</span>
 </div>
 
 <ng-template #unClickable>
-  <span class="text-red " ><i class="far fa-heart"></i> {{numberOfLikes}}</span>
+  <span class="text-red " ><i class="far fa-heart"></i> {{dishDetailed?.numberOfLikes}}</span>
 </ng-template>
 
